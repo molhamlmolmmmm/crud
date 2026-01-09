@@ -52,17 +52,17 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $post= post::findOrFail($id);
-        // if(!empty($post))
-        // {
-        //      $post->update([
-        //     'name'=>$request->input('name'),
-        //     'title'=>$request->input('title')
-        // ]);
-        // return response()->json(["status=>updated"],202);
+        $post= post::findOrFail($id);
+        if(!empty($post))
+        {
+             $post->update([
+            'name'=>$request->input('name'),
+            'title'=>$request->input('title')
+        ]);
+        return response()->json(["status=>updated"],202);
 
-        // }
-        // return response()->json(["status=>not updated"],status: 404);
+        }
+        return response()->json(["status=>not updated"],status: 404);
         return response()->json([$request]);
         
     }
