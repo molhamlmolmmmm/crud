@@ -29,6 +29,12 @@ class PostController extends Controller
         $post = new post;
         $post->name=$request->name;
         $post->title=$request->title;
+        if($request->hasFile('image')){
+            $image = $request->image;
+            $imageName = time().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('image'),$imageName);
+            $post->image=$imageName;
+        }
         $post->save();
         return response()->json(["status=>success"],202);
 
