@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,11 @@ Route::get('/post/show/{id}',[PostController::class,'show']);
 Route::delete('/post/delete/{id}',[PostController::class,'destroy']);
 Route::post('/post/store',[PostController::class,'store']);
 Route::put('/post/update/{id}',[PostController::class,'update']);
+
+Route::post('/registe',[Authcontroller::class],'makeUser');
+Route::post('/login',[AuthController::class],'login');
+Route::middleware(['auth:sanctum'])->group(function(){
+    Route::post('/logout',[AuthController::class],'logout');
+});
+
+// Route::middleware(['auth:sanctum'])->Route::post('/logout',[AuthController::class],'logout');

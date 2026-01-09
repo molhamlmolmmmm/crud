@@ -33,7 +33,7 @@ class PostController extends Controller
             $image = $request->image;
             $imageName = time().'.'.$image->getClientOriginalExtension();
             $image->move(public_path('image'),$imageName);
-            $post->image=$imageName;
+            $post->image='image/'.$imageName;
         }
         $post->save();
         return response()->json(["status=>success"],202);
