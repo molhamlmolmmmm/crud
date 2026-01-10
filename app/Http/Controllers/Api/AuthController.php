@@ -15,7 +15,7 @@ class AuthController extends Controller
         $user = User::create([
             'name'=>$validateDate['name'],
             'email'=>$validateDate['email'],
-            'password'=>Hash::make($validateDate['email']),
+            'password'=>Hash::make($validateDate['password']),
         ]);
         $token = $user->createToken($validateDate['email'])->plainTextToken;
         $response=[
@@ -33,13 +33,20 @@ class AuthController extends Controller
             'email'=>'required|string|email',
             'password'=>'required|string',
          ]);
+         
          $user =User::where('email',$request->email)->first();
-         if(!$user || !Hash::check($request->password,$user->password)){
-            return response()->json([
-                'status=>failed',
-                'message=>Invalid credentials',
-            ],401);
-         }
+         $passwordrequesthash= Hash::make($request->password);
+        //  if(!user || !Hash::check($request->password,$user->password)){}
+        if(!$user || !Hash::check($request->password,$user->password)){
+                return response()->json([
+                    'status=>failed',
+                    'message=>Invalid credentials',
+                    'pas'=>$passwordrequesthash,
+                    'pas2'=>$user->password,
+                ],401);
+                
+        }
+          
          $token=$user->createToken('token-name')->plainTextToken;
          $response=[
             'status'=>'success',

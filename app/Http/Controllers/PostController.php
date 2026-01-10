@@ -27,6 +27,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $post = new post;
+        // return dd($request);
         $post->name=$request->name;
         $post->title=$request->title;
         if($request->hasFile('image')){

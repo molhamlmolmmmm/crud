@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController as ApiAuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
@@ -26,10 +27,10 @@ Route::delete('/post/delete/{id}',[PostController::class,'destroy']);
 Route::post('/post/store',[PostController::class,'store']);
 Route::put('/post/update/{id}',[PostController::class,'update']);
 
-Route::post('/registe',[Authcontroller::class],'makeUser');
-Route::post('/login',[AuthController::class],'login');
+Route::post('/register',[AuthController::class,'register']);
+Route::post('/login',[AuthController::class,'login']);
 Route::middleware(['auth:sanctum'])->group(function(){
-    Route::post('/logout',[AuthController::class],'logout');
+    Route::post('/logout',[AuthController::class,'logout']);
 });
 
 // Route::middleware(['auth:sanctum'])->Route::post('/logout',[AuthController::class],'logout');
