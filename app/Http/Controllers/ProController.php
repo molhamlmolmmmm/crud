@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\userp;
+use App\Models\pro;
 use Illuminate\Http\Request;
 
-class UserpController extends Controller
+class ProController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,25 +28,13 @@ class UserpController extends Controller
      */
     public function store(Request $request)
     {
-        $userp = new userp();
-        $userp->create([
-            'name'=>$request->name,
-            'email'=>$request->email,
-        ]); 
-        $userp->profile()->create([
-            'name'=>$request->profilename,
-            'title'=>$request->profiletitle,
-           
-
-
-        ]);
-        return response()->json(['status=>ok'],201);
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(userp $userp)
+    public function show(pro $pro)
     {
         //
     }
@@ -54,7 +42,7 @@ class UserpController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(userp $userp)
+    public function edit(pro $pro)
     {
         //
     }
@@ -62,7 +50,7 @@ class UserpController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, userp $userp)
+    public function update(Request $request, pro $pro)
     {
         //
     }
@@ -70,7 +58,7 @@ class UserpController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(userp $userp)
+    public function destroy(pro $pro)
     {
         //
     }

@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class profile extends Model
+class u extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name','title',
+        'name','email'
     ];
-    public function userp(){
-        return $this->belongsTo(userp::class);
+    public function pro(){
+        return $this->hasOne(pro::class,'u_id','id');
     }
 }
